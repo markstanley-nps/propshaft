@@ -32,6 +32,7 @@ module Propshaft
     config.after_initialize do |app|
       config.assets.output_path ||=
         Pathname.new(File.join(app.config.paths["public"].first, app.config.assets.prefix))
+      config.assets.server_and_root ||= "#{app.config.asset_host}#{app.config.relative_url_root}"
 
       app.assets = Propshaft::Assembly.new(app.config.assets)
 
